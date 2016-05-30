@@ -27,7 +27,7 @@ public class Perceptron {
     XYSeries error;
     
     /*Metodo para llenar la rata de aprendizaje, la matriz de peso y los umbrales*/
-    Perceptron(int[][] Salidas, int[][] Entradas)
+    public Perceptron(int[][] Salidas, int[][] Entradas)
     {
         error = new XYSeries("Error Por Iteración");
         entradas = Entradas;
@@ -102,6 +102,7 @@ public class Perceptron {
             this.iniciarEntrenamiento(iteraciones);
         }
         else{
+            this.guardarUmbralesYPesosOptimos();
             Estadistica est = new Estadistica(error);
             est.GenerarEstadisticas();
         }
@@ -121,12 +122,15 @@ public class Perceptron {
     }
     
     private void guardarUmbralesYPesosOptimos(){
+        Archivo arc = new Archivo();
         String texto = ""; 
         for (int i = 0; i < matrizPeso.length; i++) {
             for (int j = 0; j < matrizPeso[i].length; j++) {
-                texto = texto + String.valueOf(matrizPeso[i][j]);
+                texto = texto + String.valueOf(matrizPeso[i][j]) + ";";
             }
+            texto = texto + "\n";
         }
+        arc.escribirArchivo("MatrizDePeso.txt", texto);
     }
     
     private double funcionEscalone(double num)

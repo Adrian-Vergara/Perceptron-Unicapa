@@ -19,12 +19,6 @@ public class Unicapa {
         int [][] salidas = {{1}, {0}, {0}, {0}};
         Perceptron p = new Perceptron(salidas, entradas);
         p.iniciarEntrenamiento(500);
-        /*for (int i = 0; i < entradas.length; i++) {
-            for (int j = 0; j < entradas[i].length; j++) {
-                System.out.print(entradas[i][j] + " ");
-            }
-            System.out.println(" ");
-        }*/
     }
     
 }
