@@ -5,6 +5,8 @@
  */
 package unicapa;
 
+import java.io.IOException;
+
 /**
  *
  * @author Adrian
@@ -14,11 +16,11 @@ public class Unicapa {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        int [][] entradas = {{1,1},{1,0},{0,1},{0,0}};
+    public static void main(String[] args) throws IOException {
+        /*int [][] entradas = {{1,1},{1,0},{0,1},{0,0}};
         int [][] salidas = {{1}, {0}, {0}, {0}};
-        Perceptron p = new Perceptron(salidas, entradas);
-        p.iniciarEntrenamiento(500);
+        Perceptron p = new Perceptron(salidas, entradas, 0.01);
+        p.iniciarEntrenamiento(500);*/
     }
     
 }

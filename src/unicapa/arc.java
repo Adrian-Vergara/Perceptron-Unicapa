@@ -12,32 +12,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Writer;
 
 /**
  *
  * @author Adrian
  */
-public class Archivo {
-    
-    public void escribirArchivo(String nombreArchivo, String texto)
-    {
-        File f;
-        f = new File(nombreArchivo);
-        try{
-            FileWriter w = new FileWriter(f);
-            BufferedWriter bw = new BufferedWriter(w);
-            PrintWriter wr = new PrintWriter(bw);
-            wr.write(texto);
-            wr.close();
-            bw.close();
-        }catch(IOException e){
-        }
-
-    }
-    
-    public void Escribir(double[][] Matriz,String name_File) throws IOException{
+public class arc {
+   
+    public void Escribir(Double[][] Matriz,String name_File) throws IOException{
            String Text="";
             for (int i = 0; i < Matriz.length; i++) {
                 for (int j = 0; j < Matriz[i].length; j++) {
@@ -51,7 +34,7 @@ public class Archivo {
             agregaContenidoArchivo(archivoPrueba, Text);
     }
     
-    public void Escribir(double[] Matriz, String name_File) throws IOException{
+    public void Escribir(Double[] Matriz, String name_File) throws IOException{
            String Text="";
             for (int i = 0; i < Matriz.length; i++) {
              
@@ -65,32 +48,9 @@ public class Archivo {
             agregaContenidoArchivo(archivoPrueba, Text);
     }
     
-    static public void agregaContenidoArchivo(File archivoAbierto, String contenido) throws FileNotFoundException, IOException {
-    if (archivoAbierto == null) {
-      throw new IllegalArgumentException("El archivo no debe ser nulo.");
-    }
-    if (!archivoAbierto.exists()) {
-      throw new FileNotFoundException ("el archivo no existe: " + archivoAbierto);
-    }
-    if (!archivoAbierto.isFile()) {
-      throw new IllegalArgumentException("no debe ser un directorio: " + archivoAbierto);
-    }
-    if (!archivoAbierto.canWrite()) {
-      throw new IllegalArgumentException("El archivo no puede ser escrito: " + archivoAbierto);
-    }
-
-    Writer output = new BufferedWriter(new FileWriter(archivoAbierto));
-    try {
-      output.write( contenido );
-    }
-    finally {
-      output.close();
-    }
-  }
-    
-    public double[][] leerMatriz(int fila, int columna ,String name_File){
+    public Double[][] leerMatriz(int fila, int columna ,String name_File){
             //Creamos un String que va a contener todo el texto del archivo
-            double[][] matriz = new double[fila][columna];
+            Double[][] matriz = new Double[fila][columna];
             String texto="";
 
             try
@@ -133,14 +93,14 @@ public class Archivo {
             //Si se causa un error al leer cae aqui
             catch(Exception e)
             {
-            System.out.println("Error al leer");
+            System.out.println("Error al leer Matriz de pesos");
             }
       return matriz;
     }
-    
-    public double[]leerUmbrales(int tamaño, String name_File){
+   
+    public Double[]leerUmbrales(int tamaño,String name_File){
             //Creamos un String que va a contener todo el texto del archivo
-            double[] matriz = new double[tamaño];
+            Double[] matriz = new Double[tamaño];
             String texto="";
 
             try
@@ -168,6 +128,10 @@ public class Archivo {
                               b = b+1;
                               text="";
                          }
+                         
+                        
+                         
+                        
                      }
                 }
             }
@@ -176,8 +140,43 @@ public class Archivo {
             //Si se causa un error al leer cae aqui
             catch(Exception e)
             {
-            System.out.println("Error al leer");
+            System.out.println("Error al leer vector de umbrales");
             }
       return matriz;
     }
+    
+    public void Reiniciar(String name_File) throws IOException{
+         String Text="";
+        
+            File archivoPrueba = new File(name_File+".txt");
+            agregaContenidoArchivo(archivoPrueba, Text);
+    }
+    
+    /**
+  * Cambia el contenido de un archivo de testo en su totalidad.. sobreescribiendo
+   * el texto existente
+   **/
+
+  static public void agregaContenidoArchivo(File archivoAbierto, String contenido) throws FileNotFoundException, IOException {
+    if (archivoAbierto == null) {
+      throw new IllegalArgumentException("El archivo no debe ser nulo.");
+    }
+    if (!archivoAbierto.exists()) {
+      throw new FileNotFoundException ("el archivo no existe: " + archivoAbierto);
+    }
+    if (!archivoAbierto.isFile()) {
+      throw new IllegalArgumentException("no debe ser un directorio: " + archivoAbierto);
+    }
+    if (!archivoAbierto.canWrite()) {
+      throw new IllegalArgumentException("El archivo no puede ser escrito: " + archivoAbierto);
+    }
+
+    Writer output = new BufferedWriter(new FileWriter(archivoAbierto));
+    try {
+      output.write( contenido );
+    }
+    finally {
+      output.close();
+    }
+  }
 }
